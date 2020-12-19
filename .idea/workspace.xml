@@ -11,7 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0c54781-66a5-4172-b3ea-56103a782461" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/ChatPlatform/ConnectionProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatPlatform/ConnectionProxy.java" afterDir="false" />
+>>>>>>> 760e4ee91a1cf587dfd7fc6e0ab910441ade6844
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
