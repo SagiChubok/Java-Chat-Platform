@@ -1,9 +1,6 @@
 package ChatPlatform;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class ConnectionProxy extends Thread implements StringProducer,StringConsumer{
@@ -12,15 +9,19 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
     private Socket connectionSocket = null;
     private InputStream is = null;
     private OutputStream os = null;
+    private DataInputStream dis = null;
+    private DataOutputStream dos = null;
 
     ConnectionProxy(Socket socket) {
         try {
             connectionSocket = socket;
             is = socket.getInputStream();
             os = socket.getOutputStream();
+            dis = new DataInputStream(is);
+            dos = new DataOutputStream(os);
         }
-        catch(Exception e) {
-            //  Block of code to handle errors
+        catch(IOException e) {
+            /* Block of code to handle errors */
         }
     }
 
