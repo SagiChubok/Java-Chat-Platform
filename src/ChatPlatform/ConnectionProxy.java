@@ -34,5 +34,11 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
     }
     @Override
     public synchronized void consume(String str) {
+        try{
+            dos.writeUTF(str);
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
