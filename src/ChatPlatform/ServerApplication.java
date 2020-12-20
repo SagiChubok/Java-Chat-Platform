@@ -32,7 +32,7 @@ public class ServerApplication
                 connection.addConsumer(client);
                 client.addConsumer(mb);
                 mb.addConsumer(connection);
-                mb.consume(client.getName() + " Has joined the chat!");
+                mb.consume(client.getName() + " has joined the chat!");
                 connection.start();
             }
             catch(IOException e)
