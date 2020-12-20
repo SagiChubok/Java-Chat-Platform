@@ -6,7 +6,7 @@ import java.net.Socket;
 public class ConnectionProxy extends Thread implements StringProducer,StringConsumer{
 
     private StringConsumer consumer = null;
-    private Socket connectionSocket = null;
+    private Socket socket = null;
     private InputStream is = null;
     private OutputStream os = null;
     private DataInputStream dis = null;
@@ -14,14 +14,15 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
 
     ConnectionProxy(Socket socket) {
         try {
-            connectionSocket = socket;
+            this.socket = socket;
             is = socket.getInputStream();
             os = socket.getOutputStream();
             dis = new DataInputStream(is);
             dos = new DataOutputStream(os);
         }
         catch(IOException e) {
-            /* Block of code to handle errors */
+            System.out.println("Problem at ConnectionProxy class");
+            e.printStackTrace();
         }
     }
 
@@ -29,16 +30,35 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
     public void addConsumer(StringConsumer sc) {
         consumer = sc;
     }
+
     @Override
     public void removeConsumer(StringConsumer sc) {
     }
+
     @Override
     public synchronized void consume(String str) {
         try{
             dos.writeUTF(str);
         }
         catch (IOException e){
-            System.out.println(e.getMessage());
+            System.out.println("Problem at ConnectionProxy class - 'Consume method'");
+            e.printStackTrace();
         }
     }
+
+    @Override
+    public void run(){
+        try{
+            while(true) {
+                String msg = dis.readUTF();
+                consumer.consume(msg);
+            }
+        }
+        catch(IOException e){
+            System.out.println("Problem at ConnectionProxy class - 'Run method'");
+            e.printStackTrace();
+        }
+    }
+
+
 }
