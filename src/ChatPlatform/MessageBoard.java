@@ -1,7 +1,5 @@
 package ChatPlatform;
 
-import java.io.IOException;
-
 public class MessageBoard implements StringProducer,StringConsumer {
     @Override
     public void addConsumer(StringConsumer sc) {}

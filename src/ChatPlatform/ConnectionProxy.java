@@ -1,7 +1,7 @@
 package ChatPlatform;
 
 import java.io.*;
-import java.net.Socket;
+import java.net.*;
 
 public class ConnectionProxy extends Thread implements StringProducer,StringConsumer{
 
