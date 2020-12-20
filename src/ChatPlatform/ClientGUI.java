@@ -22,16 +22,10 @@ public class ClientGUI implements StringConsumer {
     @Override
     public synchronized void consume(String str) {}
 
-    public static void main(String[]args)
-    {
-        ClientGUI gui = new ClientGUI();
-        gui.go();
-    }
-
     public void go() {
         /* Chat GUI structure */
 
-        // Layout
+        /* Layout */
         chatBoard = new JFrame("Chat Platform");
         chatBoard.setLayout(new BorderLayout());
         chatBoard.setSize(530, 500);
@@ -39,7 +33,7 @@ public class ClientGUI implements StringConsumer {
         chat_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         send_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        // Layout elements
+        /* Layout elements */
         chatArea = new JTextArea("Java Course Shenkar (Chat Platform Assignment)");
         chatArea.setEditable(false);
         chatArea.setPreferredSize(new Dimension(503, 400));
@@ -77,7 +71,7 @@ public class ClientGUI implements StringConsumer {
             }
         });
 
-        // Add layout elements
+        /* Add layout elements */
         send_panel.add(connectBtn);
         send_panel.add(sendBtn);
 
@@ -102,13 +96,45 @@ public class ClientGUI implements StringConsumer {
         chatBoard.setResizable(false);
     }
 
-    //Actions listeners
+    /* Actions listeners */
     class ConnectActionListener implements ActionListener {
+        private final ClientGUI gui;
 
-        public ConnectActionListener(ClientGUI gui){}
+        public ConnectActionListener(ClientGUI gui) {
+            this.gui = gui;
+        }
 
-        public void actionPerformed(ActionEvent ae) {}
+        public void actionPerformed(ActionEvent ae) {
+            String action = ae.getActionCommand();
+            if(action.equals("Connect")) {
+                try{
+                    ConnectionProxy proxy = new ConnectionProxy(new Socket("127.0.0.1",8080));
+                    connectBtn.setVisible(false);
+                    sendBtn.setVisible(true);
+                    consumer = proxy;
+                    producer = proxy;
+                    producer.addConsumer(this.gui);
+                    proxy.start();
+                    consume("Connection established...\n");
+
+                    consumer.consume(text_field.getText());
+                    text_field.setText("");
+                }
+                catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+            else if(action.equals("Send")){
+                if (!text_field.getText().equals(""))
+                    consumer.consume(text_field.getText());
+                text_field.setText("");
+            }
+        }
     }
 
+    public static void main(String[] args) {
+        ClientGUI gui = new ClientGUI();
+        gui.go();
+    }
 
 }

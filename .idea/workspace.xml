@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0c54781-66a5-4172-b3ea-56103a782461" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java-Exercises/ChatPlatform/ClientGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java-Exercises/ChatPlatform/ClientGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatPlatform/ClientGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatPlatform/ClientGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
