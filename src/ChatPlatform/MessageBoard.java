@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class MessageBoard implements StringProducer,StringConsumer {
 
-    private final LinkedList<ConnectionProxy> listCP;
+    private LinkedList<ConnectionProxy> listCP;
 
     MessageBoard() {
         listCP = new LinkedList<ConnectionProxy>();
