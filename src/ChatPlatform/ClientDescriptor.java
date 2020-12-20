@@ -13,7 +13,11 @@ public class ClientDescriptor implements StringConsumer, StringProducer {
 
     public void removeConsumer(StringConsumer sc) {}
 
-    public void consume(String str) {}
+    public void consume(String str) {
+        if(consumer != null){
+            consumer.consume(this.name + ": " + str);
+        }
+    }
 
     public String getName() {
         return name;
