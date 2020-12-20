@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0c54781-66a5-4172-b3ea-56103a782461" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ChatPlatform/ClientGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatPlatform/ClientGUI.java" afterDir="false" />
-    </list>
+    <list default="true" id="c0c54781-66a5-4172-b3ea-56103a782461" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

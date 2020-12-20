@@ -20,7 +20,10 @@ public class ClientGUI implements StringConsumer {
     private StringProducer producer;
 
     @Override
-    public synchronized void consume(String str) {}
+    public synchronized void consume(String str) {
+        // Append message to chat
+        chatArea.append("\n" + str);
+    }
 
     public void go() {
         /* Chat GUI structure */
