@@ -19,20 +19,20 @@ public class ServerApplication
             System.out.println(e.getMessage());
         }
 
-        Socket socket = null;
-        ClientDescriptor client = null;
         ConnectionProxy connection = null;
 
         while(true)
         {
             try
             {
-                socket = server.accept();
+                assert server != null;
+                Socket socket = server.accept();
                 connection = new ConnectionProxy(socket);
-                client = new ClientDescriptor();
+                ClientDescriptor client = new ClientDescriptor(connection.readName());
                 connection.addConsumer(client);
                 client.addConsumer(mb);
                 mb.addConsumer(connection);
+                mb.consume(client.getName() + " Has joined the chat!");
                 connection.start();
             }
             catch(IOException e)
