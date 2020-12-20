@@ -3,7 +3,7 @@ package ChatPlatform;
 public class ClientDescriptor implements StringConsumer, StringProducer {
 
     private StringConsumer consumer = null;
-    private String name;
+    private final String name;
 
     public ClientDescriptor(String name){
         this.name = name;

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class MessageBoard implements StringProducer,StringConsumer {
 
-    private LinkedList<ConnectionProxy> listCP = null;
+    private final LinkedList<ConnectionProxy> listCP;
 
     MessageBoard() {
         listCP = new LinkedList<ConnectionProxy>();
@@ -28,7 +28,6 @@ public class MessageBoard implements StringProducer,StringConsumer {
                 if (consumer.socketExist()) {
                     consumer.consume(str);
                 }
-                else consumer = null;
             }
         }
     }
