@@ -16,6 +16,9 @@ public class ClientGUI implements StringConsumer {
     private JButton connectBtn;
     private JButton sendBtn;
 
+    private StringConsumer consumer;
+    private StringProducer producer;
+
     @Override
     public synchronized void consume(String str) {}
 
@@ -57,6 +60,46 @@ public class ClientGUI implements StringConsumer {
 
         JScrollPane scroller = new JScrollPane(this.chatArea);
 
+        // Chat panel
+        chatBoard.add(chat_panel, BorderLayout.NORTH);
+        chat_panel.add(scroller);
+
+        // Send panel
+        chatBoard.add(send_panel, BorderLayout.SOUTH);
+        send_panel.add(text_field);
+        text_field.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                text_field.setText(null); // Empty the text field when it receives focus
+            }
+            @Override
+            public void focusLost(FocusEvent arg0) {
+            }
+        });
+
+        // Add layout elements
+        send_panel.add(connectBtn);
+        send_panel.add(sendBtn);
+
+        // Show frame
+        chatBoard.setVisible(true);
+
+        // Frame Closing Operation
+        chatBoard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        chatBoard.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                if (consumer != null){
+                    consumer.consume("disconnected from the chat.");
+                }
+                e.getWindow().dispose();
+            }
+        });
+
+        //Frame Disable resize operation
+        chatBoard.setResizable(false);
     }
 
     //Actions listeners
