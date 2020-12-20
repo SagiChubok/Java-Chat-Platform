@@ -60,5 +60,16 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
         }
     }
 
+    public String readName(){
+        try{
+            return this.dis.readUTF();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return "Problem not received any name";
+        }
+    }
+
 
 }
