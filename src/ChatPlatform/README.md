@@ -1,2 +1,2 @@
 Chat Platform Application 
-Using Java Socket Programming With & Java GUI 
+Using Java Socket Programming & Java GUI 
