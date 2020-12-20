@@ -76,10 +76,9 @@ public class ClientGUI implements StringConsumer {
 
         /* Add layout elements */
         send_panel.add(connectBtn);
-        send_panel.getRootPane().setDefaultButton( connectBtn ); // KeyPress Enter
-
         send_panel.add(sendBtn);
-        send_panel.getRootPane().setDefaultButton( sendBtn ); // KeyPress Enter
+
+        send_panel.getRootPane().setDefaultButton(connectBtn); // KeyPress Enter
 
 
         // Show frame
@@ -118,6 +117,7 @@ public class ClientGUI implements StringConsumer {
                     ConnectionProxy proxy = new ConnectionProxy(new Socket("127.0.0.1",8080));
                     connectBtn.setVisible(false);
                     sendBtn.setVisible(true);
+                    send_panel.getRootPane().setDefaultButton(sendBtn); // KeyPress Enter
                     consumer = proxy;
                     producer = proxy;
                     producer.addConsumer(this.gui);
@@ -138,7 +138,6 @@ public class ClientGUI implements StringConsumer {
             }
         }
     }
-
 
     public static void main(String[] args) {
         ClientGUI gui = new ClientGUI();
