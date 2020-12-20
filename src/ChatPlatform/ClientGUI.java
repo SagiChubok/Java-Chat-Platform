@@ -76,7 +76,11 @@ public class ClientGUI implements StringConsumer {
 
         /* Add layout elements */
         send_panel.add(connectBtn);
+        send_panel.getRootPane().setDefaultButton( connectBtn ); // KeyPress Enter
+
         send_panel.add(sendBtn);
+        send_panel.getRootPane().setDefaultButton( sendBtn ); // KeyPress Enter
+
 
         // Show frame
         chatBoard.setVisible(true);
@@ -134,6 +138,7 @@ public class ClientGUI implements StringConsumer {
             }
         }
     }
+
 
     public static void main(String[] args) {
         ClientGUI gui = new ClientGUI();
