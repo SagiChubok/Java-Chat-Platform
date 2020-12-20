@@ -78,7 +78,7 @@ public class ClientGUI implements StringConsumer {
         send_panel.add(connectBtn);
         send_panel.add(sendBtn);
 
-        send_panel.getRootPane().setDefaultButton(connectBtn); // KeyPress Enter
+        send_panel.getRootPane().setDefaultButton(sendBtn);
 
 
         // Show frame
