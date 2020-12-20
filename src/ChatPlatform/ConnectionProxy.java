@@ -54,13 +54,13 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
                 consumer.consume(msg);
             }
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.out.println("Problem at ConnectionProxy class - 'Run method'");
             e.printStackTrace();
         }
     }
 
-    public String readName(){
+    public String readName() {
         try{
             return this.dis.readUTF();
         }
@@ -70,6 +70,64 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
             return "Problem not received any name";
         }
     }
+
+    public boolean socketExist(){
+        return this.socket.isConnected();
+    }
+
+    public void closeConnection(){
+        if(is != null)
+        {
+            try {
+                is.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(os != null)
+        {
+            try {
+                os.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(dis != null)
+        {
+            try {
+                dis.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(dos != null)
+        {
+            try {
+                dos.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(socket != null)
+        {
+            try {
+                socket.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
 
 }
