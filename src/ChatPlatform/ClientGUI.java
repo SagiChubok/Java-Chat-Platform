@@ -6,6 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ *
+ * This class represent the client side and implements the client side view.
+ * Host: 127.0.0.1
+ * Port: 8080
+ *
+ */
+
 public class ClientGUI implements StringConsumer {
 
     private JFrame chatBoard;

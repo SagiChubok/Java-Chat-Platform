@@ -3,6 +3,15 @@ package ChatPlatform;
 import java.io.*;
 import java.net.*;
 
+/**
+ *
+ * This class represent the server side and implements the server side principles.
+ * Provide TCP connection to other users on same socket.
+ * Host: 127.0.0.1
+ * Port: 8080
+ *
+ */
+
 public class ServerApplication
 {
     public static void main(String args[])

@@ -3,6 +3,13 @@ package ChatPlatform;
 import java.io.*;
 import java.net.*;
 
+/**
+ *
+ * This class behave as mediate layer that promise the server
+ * and the client will not corrupted.
+ *
+ */
+
 public class ConnectionProxy extends Thread implements StringProducer,StringConsumer{
 
     private StringConsumer consumer = null;
@@ -67,7 +74,7 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
         catch (IOException e)
         {
             e.printStackTrace();
-            return "Problem not received any name";
+            return "Problem at read the name of the user - not received any name";
         }
     }
 
@@ -126,8 +133,4 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
             }
         }
     }
-
-
-
-
 }

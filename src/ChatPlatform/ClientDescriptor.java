@@ -1,5 +1,12 @@
 package ChatPlatform;
 
+/**
+ *
+ * This class hold the client name and the message that sent,
+ * When client send any message his name attached to the message.
+ *
+ */
+
 public class ClientDescriptor implements StringConsumer, StringProducer {
 
     private StringConsumer consumer = null;

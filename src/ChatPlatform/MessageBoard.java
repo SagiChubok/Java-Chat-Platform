@@ -2,6 +2,13 @@ package ChatPlatform;
 
 import java.util.LinkedList;
 
+/**
+ *
+ * This class holds the list of consumers and handling
+ * the receiving and sending massages to each client
+ *
+ */
+
 public class MessageBoard implements StringProducer,StringConsumer {
 
     private LinkedList<ConnectionProxy> listCP;
@@ -16,8 +23,7 @@ public class MessageBoard implements StringProducer,StringConsumer {
     }
 
     @Override
-    public void removeConsumer(StringConsumer sc) {
-    }
+    public void removeConsumer(StringConsumer sc) {}
 
     @Override
     public synchronized void consume(String str) {
