@@ -36,7 +36,9 @@ public class ClientGUI implements StringConsumer {
         chatBoard.setSize(530, 500);
 
         chat_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        chat_panel.setBackground(new Color(0x99b1c9));
         send_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        send_panel.setBackground(new Color(0x99b1c9));
 
         chatArea = new JTextArea ( 25, 49);
         chatArea.append("Java Course Shenkar (Chat Platform Assignment)");
