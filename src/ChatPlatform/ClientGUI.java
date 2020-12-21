@@ -41,9 +41,8 @@ public class ClientGUI implements StringConsumer {
         chatArea = new JTextArea ( 25, 49);
         chatArea.append("Java Course Shenkar (Chat Platform Assignment)");
         chatArea.setEditable ( false ); // set textArea non-editable
-        JScrollPane scroll = new JScrollPane ( chatArea );
+        JScrollPane scroll = new JScrollPane (chatArea);
         scroll.setVerticalScrollBarPolicy (ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        chat_panel.add(scroll);
 
         text_field = new JTextField(" Enter your name...");
         text_field.setPreferredSize(new Dimension(400, 40));
@@ -79,6 +78,8 @@ public class ClientGUI implements StringConsumer {
         /* Add layout elements */
         send_panel.add(connectBtn);
         send_panel.add(sendBtn);
+        chat_panel.add(scroll); // add scroll that contains chatArea
+
 
         send_panel.getRootPane().setDefaultButton(connectBtn);
 
