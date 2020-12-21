@@ -23,6 +23,8 @@ public class ClientGUI implements StringConsumer {
     public synchronized void consume(String str) {
         // Append message to chat
         chatArea.append("\n" + str);
+        // Set the scroll down when appending new message
+        chatArea.setCaretPosition(chatArea.getDocument().getLength());
     }
 
     public void go() {
@@ -36,10 +38,12 @@ public class ClientGUI implements StringConsumer {
         chat_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         send_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        /* Layout elements */
-        chatArea = new JTextArea("Java Course Shenkar (Chat Platform Assignment)");
-        chatArea.setEditable(false);
-        chatArea.setPreferredSize(new Dimension(503, 400));
+        chatArea = new JTextArea ( 25, 49);
+        chatArea.append("Java Course Shenkar (Chat Platform Assignment)");
+        chatArea.setEditable ( false ); // set textArea non-editable
+        JScrollPane scroll = new JScrollPane ( chatArea );
+        scroll.setVerticalScrollBarPolicy (ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        chat_panel.add(scroll);
 
         text_field = new JTextField(" Enter your name...");
         text_field.setPreferredSize(new Dimension(400, 40));
@@ -55,11 +59,9 @@ public class ClientGUI implements StringConsumer {
         sendBtn.setActionCommand("Send");
         sendBtn.setVisible(false);
 
-        JScrollPane scroller = new JScrollPane(this.chatArea);
 
         // Chat panel
         chatBoard.add(chat_panel, BorderLayout.NORTH);
-        chat_panel.add(scroller);
 
         // Send panel
         chatBoard.add(send_panel, BorderLayout.SOUTH);
@@ -78,7 +80,7 @@ public class ClientGUI implements StringConsumer {
         send_panel.add(connectBtn);
         send_panel.add(sendBtn);
 
-        send_panel.getRootPane().setDefaultButton(sendBtn);
+        send_panel.getRootPane().setDefaultButton(connectBtn);
 
 
         // Show frame
@@ -100,6 +102,7 @@ public class ClientGUI implements StringConsumer {
 
         //Frame Disable resize operation
         chatBoard.setResizable(false);
+
     }
 
     /* Actions listeners */
