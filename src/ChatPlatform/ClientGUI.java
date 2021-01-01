@@ -27,6 +27,8 @@ public class ClientGUI implements  StringConsumer, StringProducer {
     private StringConsumer consumer;
     private StringProducer producer;
 
+    private Socket socket = null;
+
     @Override
     public void addConsumer(StringConsumer sc) {
         consumer = sc;
@@ -118,6 +120,12 @@ public class ClientGUI implements  StringConsumer, StringProducer {
                     consumer.consume("disconnect");
                 }
                 e.getWindow().dispose();
+                try {
+                    socket.close();
+                    System.exit(0);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         });
 
@@ -137,7 +145,8 @@ public class ClientGUI implements  StringConsumer, StringProducer {
             String action = ae.getActionCommand();
             if(action.equals("Connect")) {
                 try{
-                    ConnectionProxy proxy = new ConnectionProxy(new Socket("127.0.0.1",8080));
+                    socket = new Socket("127.0.0.1",8080);
+                    ConnectionProxy proxy = new ConnectionProxy(socket);
                     connectBtn.setVisible(false);
                     sendBtn.setVisible(true);
                     send_panel.getRootPane().setDefaultButton(sendBtn); // KeyPress Enter
