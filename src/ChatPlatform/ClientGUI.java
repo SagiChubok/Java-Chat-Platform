@@ -14,7 +14,7 @@ import java.awt.event.*;
  *
  */
 
-public class ClientGUI implements StringConsumer {
+public class ClientGUI implements  StringConsumer, StringProducer {
 
     private JFrame chatBoard;
     private JPanel chat_panel;
@@ -26,6 +26,16 @@ public class ClientGUI implements StringConsumer {
 
     private StringConsumer consumer;
     private StringProducer producer;
+
+    @Override
+    public void addConsumer(StringConsumer sc) {
+        consumer = sc;
+    }
+
+    @Override
+    public void removeConsumer(StringConsumer sc) {
+        consumer = null;
+    }
 
     @Override
     public synchronized void consume(String str) {
@@ -105,7 +115,7 @@ public class ClientGUI implements StringConsumer {
             public void windowClosing(WindowEvent e)
             {
                 if (consumer != null){
-                    consumer.consume("disconnected from the chat.");
+                    consumer.consume("disconnect");
                 }
                 e.getWindow().dispose();
             }
@@ -113,7 +123,6 @@ public class ClientGUI implements StringConsumer {
 
         //Frame Disable resize operation
         chatBoard.setResizable(false);
-
     }
 
     /* Actions listeners */
@@ -157,5 +166,4 @@ public class ClientGUI implements StringConsumer {
         ClientGUI gui = new ClientGUI();
         gui.go();
     }
-
 }

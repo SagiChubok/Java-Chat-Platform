@@ -16,13 +16,20 @@ public class ClientDescriptor implements StringConsumer, StringProducer {
         this.name = name;
     }
 
+    @Override
     public void addConsumer(StringConsumer sc) { consumer = sc; }
 
-    public void removeConsumer(StringConsumer sc) {}
+    @Override
+    public void removeConsumer(StringConsumer sc) { consumer = null; }
 
+    @Override
     public void consume(String str) {
         if(consumer != null){
-            consumer.consume(this.name + ": " + str);
+            if(str.equals("disconnect")){
+                consumer.consume(this.name + ": disconnected from the chat.");
+                removeConsumer(consumer);
+            }
+            else consumer.consume(this.name + ": " + str);
         }
     }
 

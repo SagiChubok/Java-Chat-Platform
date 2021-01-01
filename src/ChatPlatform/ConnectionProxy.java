@@ -39,8 +39,7 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
     }
 
     @Override
-    public void removeConsumer(StringConsumer sc) {
-    }
+    public void removeConsumer(StringConsumer sc) { consumer = null; }
 
     @Override
     public synchronized void consume(String str) {
@@ -56,10 +55,11 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
     @Override
     public void run(){
         try{
-            while(true) {
+            while(socketExist()) {
                 String msg = dis.readUTF();
                 consumer.consume(msg);
             }
+            removeConsumer(consumer);
         }
         catch(IOException e) {
             System.out.println("Problem at ConnectionProxy class - 'Run method'");

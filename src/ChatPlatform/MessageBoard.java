@@ -1,6 +1,7 @@
 package ChatPlatform;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -11,29 +12,29 @@ import java.util.LinkedList;
 
 public class MessageBoard implements StringProducer,StringConsumer {
 
-    private LinkedList<ConnectionProxy> listCP;
+    private List<ConnectionProxy> consumers;
 
     MessageBoard() {
-        listCP = new LinkedList<ConnectionProxy>();
+        consumers = new ArrayList<>();
     }
 
     @Override
     public void addConsumer(StringConsumer sc) {
-        listCP.add((ConnectionProxy)sc);
+        consumers.add((ConnectionProxy)sc);
     }
 
     @Override
-    public void removeConsumer(StringConsumer sc) {}
+    public void removeConsumer(StringConsumer sc) { consumers.remove(sc);}
 
     @Override
     public synchronized void consume(String str) {
-        int listSize = listCP.size();
+        int listSize = consumers.size();
         for(int i = 0 ; i < listSize ; i++){
-            ConnectionProxy consumer = listCP.get(i);
+            ConnectionProxy consumer = consumers.get(i);
             if(consumer != null) {
                 if (consumer.socketExist()) {
                     consumer.consume(str);
-                }
+                } else removeConsumer(consumer);
             }
         }
     }
