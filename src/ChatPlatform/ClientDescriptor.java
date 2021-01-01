@@ -26,7 +26,7 @@ public class ClientDescriptor implements StringConsumer, StringProducer {
     public void consume(String str) {
         if(consumer != null){
             if(str.equals("disconnect")){
-                consumer.consume(this.name + ": disconnected from the chat.");
+                consumer.consume(this.name + " disconnected from the chat.");
                 removeConsumer(consumer);
             }
             else consumer.consume(this.name + ": " + str);
