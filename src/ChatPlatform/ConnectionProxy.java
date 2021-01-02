@@ -47,8 +47,8 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
             dos.writeUTF(str);
         }
         catch (IOException e){
-            System.out.println("Problem at ConnectionProxy class - 'Consume method'");
-            e.printStackTrace();
+//            System.out.println("Problem at ConnectionProxy class - 'Consume method'");
+//            e.printStackTrace();
         }
     }
 
@@ -62,8 +62,10 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
             removeConsumer(consumer);
         }
         catch(IOException e) {
-            System.out.println("Problem at ConnectionProxy class - 'Run method'");
-            e.printStackTrace();
+            removeConsumer(consumer);
+            this.closeConnection();
+//            System.out.println("Problem at ConnectionProxy class - 'Run method'");
+//            e.printStackTrace();
         }
     }
 

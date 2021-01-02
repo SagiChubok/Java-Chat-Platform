@@ -23,7 +23,7 @@ public class ClientDescriptor implements StringConsumer, StringProducer {
     public void removeConsumer(StringConsumer sc) { consumer = null; }
 
     @Override
-    public void consume(String str) {
+    public synchronized void consume(String str) {
         if(consumer != null){
             if(str.equals("disconnect")){
                 consumer.consume(this.name + " disconnected from the chat.");

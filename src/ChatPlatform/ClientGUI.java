@@ -145,19 +145,21 @@ public class ClientGUI implements  StringConsumer, StringProducer {
             String action = ae.getActionCommand();
             if(action.equals("Connect")) {
                 try{
-                    socket = new Socket("127.0.0.1",8080);
-                    ConnectionProxy proxy = new ConnectionProxy(socket);
-                    connectBtn.setVisible(false);
-                    sendBtn.setVisible(true);
-                    send_panel.getRootPane().setDefaultButton(sendBtn); // KeyPress Enter
-                    consumer = proxy;
-                    producer = proxy;
-                    producer.addConsumer(this.gui);
-                    proxy.start();
-                    consume("Connection established...\n");
+                    if (!text_field.getText().equals("")) {
+                        socket = new Socket("127.0.0.1", 8080);
+                        ConnectionProxy proxy = new ConnectionProxy(socket);
+                        connectBtn.setVisible(false);
+                        sendBtn.setVisible(true);
+                        send_panel.getRootPane().setDefaultButton(sendBtn); // KeyPress Enter
+                        consumer = proxy;
+                        producer = proxy;
+                        producer.addConsumer(this.gui);
+                        proxy.start();
+                        consume("Connection established...\n");
 
-                    consumer.consume(text_field.getText());
-                    text_field.setText("");
+                        consumer.consume(text_field.getText());
+                        text_field.setText("");
+                    }
                 }
                 catch(IOException e){
                     System.out.println(e.getMessage());
