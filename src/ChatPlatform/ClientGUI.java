@@ -121,7 +121,9 @@ public class ClientGUI implements  StringConsumer, StringProducer {
                 }
                 e.getWindow().dispose();
                 try {
-                    socket.close();
+                    if(socket != null) {
+                        socket.close();
+                    }
                     System.exit(0);
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
