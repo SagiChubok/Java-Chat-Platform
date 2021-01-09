@@ -47,8 +47,6 @@ public class ServerApplication
             catch(IOException e)
             {
                 e.printStackTrace();
-                if(connection != null)
-                    connection.closeConnection();
                 System.exit(1);
             }
         }

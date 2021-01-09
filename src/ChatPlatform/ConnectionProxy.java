@@ -39,7 +39,59 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
     }
 
     @Override
-    public void removeConsumer(StringConsumer sc) { consumer = null; }
+    public void removeConsumer(StringConsumer sc) {
+        consumer = null;
+        if(is != null)
+        {
+            try {
+                is.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(os != null)
+        {
+            try {
+                os.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(dis != null)
+        {
+            try {
+                dis.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(dos != null)
+        {
+            try {
+                dos.flush();
+                dos.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(socket != null)
+        {
+            try {
+                socket.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public synchronized void consume(String str) {
@@ -81,57 +133,5 @@ public class ConnectionProxy extends Thread implements StringProducer,StringCons
 
     public boolean socketExist(){
         return this.socket.isConnected();
-    }
-
-    public void closeConnection(){
-        if(is != null)
-        {
-            try {
-                is.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if(os != null)
-        {
-            try {
-                os.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if(dis != null)
-        {
-            try {
-                dis.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if(dos != null)
-        {
-            try {
-                dos.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if(socket != null)
-        {
-            try {
-                socket.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
