@@ -1,7 +1,6 @@
 package ChatPlatform;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class MessageBoard implements StringProducer,StringConsumer {
 
-    private List<ConnectionProxy> consumers;
+    private ArrayList<ConnectionProxy> consumers;
 
     MessageBoard() {
         consumers = new ArrayList<>();
