@@ -1,6 +1,5 @@
 # Java Chat Platform
-Java chat platform using socket programming and java swing GUI.
-<br>
+Java chat platform implemented with socket programming and rendered the interface with Java Swing GUI.<br>
 
 ### Design Patterns
 - Consumer, Producer - Interface
